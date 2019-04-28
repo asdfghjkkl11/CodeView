@@ -249,4 +249,10 @@ public class CodeView extends ScrollView {
     public boolean checkMyCode() {
         return checkValidity(code.getText().toString());
     }
+    public void setText(String str){
+        code.setText(str);
+    }
+    public String getText(){
+        return code.getText().toString();
+    }
 }
