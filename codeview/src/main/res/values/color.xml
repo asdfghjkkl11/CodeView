@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#cc7832</color>
+    <color name="colorPrimaryDark">#2b2b2b</color>
+    <color name="colorAccent">#cc7832</color>
+
+    <color name="background">#2b2b2b</color>
+    <color name="string">#6a8759</color>
+    <color name="code">#ffffff</color>
+    <color name="keyword">#cc7832</color>
+    <color name="number">#4a85a3</color>
+    <color name="lines">#cc7832</color>
+    <color name="anootation">#1932f3</color>
+    <color name="special">#cc7832</color>
+
+    <color name="buttontext">#cc7832</color>
+    <color name="buttonline">#cc7832</color>
+    <color name="buttonbg">#2b2b2b</color>
+</resources>
