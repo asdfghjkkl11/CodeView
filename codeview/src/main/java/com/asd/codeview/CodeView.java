@@ -65,6 +65,11 @@ public class CodeView extends ScrollView {
         theme=new Theme(context);
         initialize(context);
     }
+    public CodeView(Context context,AttributeSet attrs) {
+        super(context,attrs);
+        theme=new Theme(context);
+        initialize(context);
+    }
     public CodeView(Context context, int BackgroundColor, int keywordsColor, int NumberColor, int specialCharColors, int printStatmentsColor, int annotationsColor,int lineColor,int codeColor) {
         super(context);
         theme=new Theme(context, BackgroundColor, keywordsColor, NumberColor, specialCharColors,printStatmentsColor, annotationsColor,lineColor,codeColor);
