@@ -76,6 +76,7 @@ public class CodeView extends ScrollView {
         initialize(context);
     }
     private void initialize(Context context) {
+        inflate(context, R.layout.layout, this);
         bg=findViewById(R.id.bg);
         v=findViewById(R.id.line);
         line=findViewById(R.id.line_text);
