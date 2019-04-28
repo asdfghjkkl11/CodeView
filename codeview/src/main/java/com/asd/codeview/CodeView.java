@@ -76,12 +76,6 @@ public class CodeView extends ScrollView {
         initialize(context);
     }
     private void initialize(Context context) {
-        setBgColor(theme.getBackgroundColor());
-        setKeywordsColor(theme.getKeywordsColor());
-        setNumbersColor(theme.getNumberColor());
-        setSpecialCharsColor(theme.getSpecialCharColors());
-        setPrintStatmentsColor(theme.getPrintStatmentsColor());
-        setAnnotationsColor(theme.getAnnotationsColor());
         bg=findViewById(R.id.bg);
         v=findViewById(R.id.line);
         line=findViewById(R.id.line_text);
@@ -92,6 +86,14 @@ public class CodeView extends ScrollView {
         display.getSize(p);
         W=p.x;
         H=p.y;
+
+        setBgColor(theme.getBackgroundColor());
+        setKeywordsColor(theme.getKeywordsColor());
+        setNumbersColor(theme.getNumberColor());
+        setSpecialCharsColor(theme.getSpecialCharColors());
+        setPrintStatmentsColor(theme.getPrintStatmentsColor());
+        setAnnotationsColor(theme.getAnnotationsColor());
+
         line.setTextSize(TypedValue.COMPLEX_UNIT_DIP,fontDP);
         code.setTextSize(TypedValue.COMPLEX_UNIT_DIP,fontDP);
         code.addTextChangedListener(new TextWatcher() {
