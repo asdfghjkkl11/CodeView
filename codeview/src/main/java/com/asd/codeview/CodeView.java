@@ -2,14 +2,9 @@ package com.asd.codeview;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
@@ -23,7 +18,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
