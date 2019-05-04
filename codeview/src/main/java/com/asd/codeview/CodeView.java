@@ -31,8 +31,8 @@ public class CodeView extends ScrollView {
     private TextView line;
     private LinearLayout bg;
     private Theme theme;
-    private int fontPX=50;
-    private int leftPX=50;
+    private int fontPX=60;
+    private int leftPX=60;
     private int W=0,H=0;
 
     private  HighLighter  keywords = new  HighLighter (
@@ -71,6 +71,7 @@ public class CodeView extends ScrollView {
         bg=findViewById(R.id.bg);
         line=findViewById(R.id.line_text);
         code=findViewById(R.id.body_text);
+        code.setHorizontallyScrolling(true);
         Point p=new Point();
         WindowManager manager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         Display display = manager.getDefaultDisplay();
@@ -117,35 +118,28 @@ public class CodeView extends ScrollView {
         String[] lines = str.split("\n");
         leftPX=(int)(Math.log10(lines.length+1)+1)*fontPX;
         for (int i = 0; i < lines.length; i++) {
-            int len=lines[i].length()*fontPX;
-            while(len+leftPX+1>W){
-                nstr+='\n';
-                len-=W-leftPX;
-            }
             nstr += String.valueOf(count) + '\n';
             count++;
         }
-
         line.setWidth(leftPX);
         line.setText(nstr);
     }
     public void paint(Editable s){
         removeSpans(s, ForegroundColorSpan.class);
-        for ( HighLighter  scheme : schemes) {
-            for (Matcher m = scheme.pattern.matcher(s); m.find(); ) {
-                s.setSpan(new ForegroundColorSpan(scheme.color),
-                        m.start(),
-                        m.end(),
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-        }
+        for ( HighLighter  scheme : schemes)
+            for (Matcher m = scheme.pattern.matcher(s); m.find(); )
+                s.setSpan(new ForegroundColorSpan(scheme.color),m.start(),m.end(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
     //remove old highlighting
     public void removeSpans(Editable e, Class<? extends CharacterStyle> type) {
         CharacterStyle[] spans = e.getSpans(0, e.length(), type);
-        for (CharacterStyle span : spans) {
+        for (CharacterStyle span : spans)
             e.removeSpan(span);
-        }
+    }
+    public void setTextSize(int px){
+        fontPX=px;
+        line.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontPX);
+        code.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontPX);
     }
     public void setColor(Theme theme){
         setBgColor(theme.getBackgroundColor());
@@ -187,10 +181,7 @@ public class CodeView extends ScrollView {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d("onConfigurationChanged" , "onConfigurationChanged");
-
-        int t=W;
-        W=H;
-        H=t;
+        int t=W; W=H; H=t;
         try {
             setColor(theme);
             drawLine(code.getText().toString());
@@ -202,23 +193,20 @@ public class CodeView extends ScrollView {
         Stack stackCheck = new Stack();
         char[] valid = s.toCharArray();
         for (int i = 0; i < valid.length; i++) {
-            if (valid[i] == '{' || valid[i] == '(') {
+            if (valid[i] == '{' || valid[i] == '(')
                 stackCheck.push((valid[i]));
-            }
             if (valid[i] == '}' || valid[i] == ')') {
                 if (stackCheck.empty()) {
                     return false;
                 } else {
-                    if (!matchPair((char) stackCheck.peek(), valid[i])) {
+                    if (!matchPair((char) stackCheck.peek(), valid[i]))
                         return false;
-                    }
                     stackCheck.pop();
                 }
             }
         }
-        if (stackCheck.size() == 1) {
+        if (stackCheck.size() == 1)
             return false;
-        }
         return true;
     }
 
