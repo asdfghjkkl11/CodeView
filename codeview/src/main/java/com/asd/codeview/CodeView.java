@@ -12,7 +12,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -30,12 +29,10 @@ import java.util.regex.Pattern;
 public class CodeView extends ScrollView {
     private EditText code;
     private TextView line;
-    private View v;
     private LinearLayout bg;
     private Theme theme;
-
-    private int fontDP=20;
-    private int leftDP=20;
+    private int fontPX=20;
+    private int leftPX=20;
     private int W=0,H=0;
 
     private  HighLighter  keywords = new  HighLighter (
@@ -72,7 +69,6 @@ public class CodeView extends ScrollView {
     private void initialize(Context context) {
         inflate(context, R.layout.layout, this);
         bg=findViewById(R.id.bg);
-        v=findViewById(R.id.line);
         line=findViewById(R.id.line_text);
         code=findViewById(R.id.body_text);
         Point p=new Point();
@@ -89,8 +85,8 @@ public class CodeView extends ScrollView {
         setPrintStatmentsColor(theme.getPrintStatmentsColor());
         setAnnotationsColor(theme.getAnnotationsColor());
 
-        line.setTextSize(TypedValue.COMPLEX_UNIT_DIP,fontDP);
-        code.setTextSize(TypedValue.COMPLEX_UNIT_DIP,fontDP);
+        line.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontPX);
+        code.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontPX);
         code.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -126,18 +122,18 @@ public class CodeView extends ScrollView {
         String nstr = "1\n";
         int count = 2;
         String[] lines = str.split("\n");
-        leftDP=(int)(Math.log10(lines.length+1)+1)*fontDP*2;
+        leftPX=(int)(Math.log10(lines.length+1)+1)*fontPX;
         for (int i = 0; i < lines.length; i++) {
-            int len=lines[i].length()*fontDP*2;
-            while(len+leftDP>W){
+            int len=lines[i].length()*fontPX;
+            while(len+leftPX>W){
                 nstr+='\n';
-                len-=W-leftDP;
+                len-=W-leftPX;
             }
             nstr += String.valueOf(count) + '\n';
             count++;
         }
 
-        line.setWidth(leftDP);
+        line.setWidth(leftPX);
         line.setText(nstr);
     }
     public void paint(Editable s){
