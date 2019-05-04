@@ -77,14 +77,7 @@ public class CodeView extends ScrollView {
         display.getSize(p);
         W=p.x;
         H=p.y;
-
-        setBgColor(theme.getBackgroundColor());
-        setKeywordsColor(theme.getKeywordsColor());
-        setNumbersColor(theme.getNumberColor());
-        setSpecialCharsColor(theme.getSpecialCharColors());
-        setPrintStatmentsColor(theme.getPrintStatmentsColor());
-        setAnnotationsColor(theme.getAnnotationsColor());
-
+        setColor(theme);
         line.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontPX);
         code.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontPX);
         code.addTextChangedListener(new TextWatcher() {
@@ -125,7 +118,7 @@ public class CodeView extends ScrollView {
         leftPX=(int)(Math.log10(lines.length+1)+1)*fontPX;
         for (int i = 0; i < lines.length; i++) {
             int len=lines[i].length()*fontPX;
-            while(len+leftPX>W){
+            while(len+leftPX+1>W){
                 nstr+='\n';
                 len-=W-leftPX;
             }
@@ -153,6 +146,14 @@ public class CodeView extends ScrollView {
         for (CharacterStyle span : spans) {
             e.removeSpan(span);
         }
+    }
+    public void setColor(Theme theme){
+        setBgColor(theme.getBackgroundColor());
+        setKeywordsColor(theme.getKeywordsColor());
+        setNumbersColor(theme.getNumberColor());
+        setSpecialCharsColor(theme.getSpecialCharColors());
+        setPrintStatmentsColor(theme.getPrintStatmentsColor());
+        setAnnotationsColor(theme.getAnnotationsColor());
     }
         //the user will be able to change color of the view as he wishes
     public void setBgColor(int color) {
@@ -186,11 +187,14 @@ public class CodeView extends ScrollView {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d("onConfigurationChanged" , "onConfigurationChanged");
+
         int t=W;
         W=H;
         H=t;
         try {
+            setColor(theme);
             drawLine(code.getText().toString());
+            paint(code.getText());
         }catch (Exception e){
         }
     }
