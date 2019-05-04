@@ -31,8 +31,8 @@ public class CodeView extends ScrollView {
     private TextView line;
     private LinearLayout bg;
     private Theme theme;
-    private int fontPX=20;
-    private int leftPX=20;
+    private int fontPX=50;
+    private int leftPX=50;
     private int W=0,H=0;
 
     private  HighLighter  keywords = new  HighLighter (
