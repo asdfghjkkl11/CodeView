@@ -22,4 +22,20 @@ dependencies {
 ```
 
 ## Usage
-
+1. add codeview on your activity
+```xml
+<com.asd.codeview.CodeView
+        android:id="@+id/codeview"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_text"
+        android:layout_above="@+id/addFinish">
+</com.asd.codeview.CodeView>
+```
+2. use like edittext using setter, getter
+```java
+private CodeView codeView=findViewById(R.id.codeview);
+codeView.setText(text);
+text=codeView.getText();
+```
