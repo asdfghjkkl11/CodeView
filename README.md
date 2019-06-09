@@ -1,7 +1,7 @@
 # CodeView
 CodeView extended from ScrollView
 
-[![LISENCE](https://jitpack.io/v/asdfghjkkl11/CodeView.svg)](https://jitpack.io/#asdfghjkkl11/CodeView)
+![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![](https://jitpack.io/v/asdfghjkkl11/CodeView.svg)](https://jitpack.io/#asdfghjkkl11/CodeView)
 
