@@ -41,6 +41,7 @@ codeView.setText(text);
 text=codeView.getText();
 ```
 ## License
+codeview is maked from [Syntax-View-Android](https://github.com/Badranh/Syntax-View-Android)
 ```license
 MIT License
 
